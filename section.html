@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualbox Advertisement - Services</title>
+    <!-- Tailwind CSS for rapid layout -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- GSAP for 3D Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: #050505;
+            color: #ffffff;
+        }
+        
+        .font-syne { font-family: 'Syne', sans-serif; }
+
+        /* Card Container & 3D Setup */
+        .vb-card {
+            position: relative;
+            height: 400px;
+            border-radius: 1rem;
+            background: linear-gradient(145deg, #151824 0%, #0a0c14 100%);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            perspective: 1200px; /* Crucial for 3D effect */
+            overflow: hidden; /* This clips any 1px overlap from the slices */
+            cursor: pointer;
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
+            transition: border-color 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .vb-card:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 40px -10px rgba(0, 174, 239, 0.15);
+        }
+
+        /* Inner Content (Revealed on hover) */
+        .vb-content {
+            position: absolute;
+            inset: 0;
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        /* The Shutter Wrapper sitting on top */
+        .vb-shutters {
+            position: absolute;
+            inset: 0;
+            z-index: 20;
+            /* Flex layout helps prevent sub-pixel gaps */
+            display: flex; 
+            pointer-events: none; /* Let mouse events pass to card */
+        }
+
+        /* Individual 3D Slice */
+        .vb-slice {
+            position: relative;
+            height: 100%;
+            background-repeat: no-repeat;
+            transform-style: preserve-3d;
+            backface-visibility: hidden;
+            /* Remove the border-right that was acting as a gap */
+            /* border-right: 1px solid rgba(255, 255, 255, 0.05); */
+            /* Subtle dark overlay so white text stands out initially */
+            box-shadow: inset 0 0 0 9999px rgba(0, 0, 0, 0.3); 
+        }
+
+        /* The Title sitting on top of the closed shutters */
+        .vb-title-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 30;
+            display: flex;
+            align-items: flex-end;
+            padding: 2rem;
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        /* Gradient Text utility */
+        .text-gradient {
+            background: linear-gradient(135deg, #00AEEF, #8CC63F, #FBC02D);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-[#00AEEF] selection:text-white">
+
+    <section class="py-24 relative overflow-hidden">
+        <!-- Decorative Background Glows -->
+        <div class="absolute top-0 left-0 w-[500px] h-[500px] bg-[#2A3F84] rounded-full mix-blend-screen filter blur-[150px] opacity-20 pointer-events-none"></div>
+        <div class="absolute bottom-0 right-0 w-[500px] h-[500px] bg-[#E3000F] rounded-full mix-blend-screen filter blur-[150px] opacity-10 pointer-events-none"></div>
+
+        <div class="max-w-[90rem] mx-auto px-6 lg:px-12 relative z-10">
+            
+            <!-- Header -->
+            <div class="text-center mb-20 flex flex-col items-center">
+                <span class="text-[#8CC63F] font-bold uppercase tracking-[0.3em] text-sm mb-4">What We Do</span>
+                <h2 class="font-syne text-4xl md:text-6xl font-black mb-4 text-white">
+                    Premium <span class="text-gradient">Services</span>
+                </h2>
+                <p class="text-gray-400 text-lg max-w-2xl">
+                    Visualbox Advertisement delivers cutting-edge creative solutions. Hover over our core disciplines to explore.
+                </p>
+            </div>
+
+            <!-- Services Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Service 1: Printing -->
+                <div class="vb-card group" data-bg="assets/images/printing.jpg">
+                    <div class="vb-content">
+                        <div class="w-12 h-12 rounded-lg bg-blue-500/20 flex items-center justify-center text-[#00AEEF] mb-6">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+                        </div>
+                        <h3 class="font-syne text-2xl font-bold mb-3">Printing Related Works</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-6">High-fidelity offset and digital printing. We guarantee flawless color calibration and sharp execution for every project.</p>
+                        <a href="#" class="inline-flex items-center gap-2 text-[#00AEEF] text-sm font-bold uppercase tracking-wider hover:text-white transition-colors">
+                            Explore <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        </a>
+                    </div>
+                    <div class="vb-shutters"></div>
+                    <div class="vb-title-overlay">
+                        <h3 class="font-syne text-2xl font-bold text-white drop-shadow-md">Printing Works</h3>
+                    </div>
+                </div>
+
+                <!-- Service 2: Packaging -->
+                <div class="vb-card group" data-bg="assets/images/packaging.jpg">
+                    <div class="vb-content">
+                        <div class="w-12 h-12 rounded-lg bg-yellow-500/20 flex items-center justify-center text-[#FBC02D] mb-6">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
+                        </div>
+                        <h3 class="font-syne text-2xl font-bold mb-3">Custom Packaging</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-6">Transform your product with custom structural designs, premium materials, and shelf-ready visual appeal.</p>
+                        <a href="#" class="inline-flex items-center gap-2 text-[#FBC02D] text-sm font-bold uppercase tracking-wider hover:text-white transition-colors">
+                            Explore <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        </a>
+                    </div>
+                    <div class="vb-shutters"></div>
+                    <div class="vb-title-overlay">
+                        <h3 class="font-syne text-2xl font-bold text-white drop-shadow-md">Packaging</h3>
+                    </div>
+                </div>
+
+                <!-- Service 3: Branding -->
+                <div class="vb-card group" data-bg="assets/images/branding.jpg">
+                    <div class="vb-content">
+                        <div class="w-12 h-12 rounded-lg bg-purple-500/20 flex items-center justify-center text-[#7B1FA2] mb-6">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
+                        </div>
+                        <h3 class="font-syne text-2xl font-bold mb-3">Branding</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-6">Building visual identities that speak. We craft memorable logos and cohesive assets that resonate with your audience.</p>
+                        <a href="#" class="inline-flex items-center gap-2 text-[#7B1FA2] text-sm font-bold uppercase tracking-wider hover:text-white transition-colors">
+                            Explore <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        </a>
+                    </div>
+                    <div class="vb-shutters"></div>
+                    <div class="vb-title-overlay">
+                        <h3 class="font-syne text-2xl font-bold text-white drop-shadow-md">Branding</h3>
+                    </div>
+                </div>
+
+                <!-- Service 4: Design -->
+                <div class="vb-card group" data-bg="assets/images/studio-blackthorn.jpg">
+                    <div class="vb-content">
+                        <div class="w-12 h-12 rounded-lg bg-green-500/20 flex items-center justify-center text-[#8CC63F] mb-6">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path></svg>
+                        </div>
+                        <h3 class="font-syne text-2xl font-bold mb-3">Creative Design</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-6">From typography to illustration, our bespoke design services create interfaces and graphics that captivate users.</p>
+                        <a href="#" class="inline-flex items-center gap-2 text-[#8CC63F] text-sm font-bold uppercase tracking-wider hover:text-white transition-colors">
+                            Explore <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        </a>
+                    </div>
+                    <div class="vb-shutters"></div>
+                    <div class="vb-title-overlay">
+                        <h3 class="font-syne text-2xl font-bold text-white drop-shadow-md">Design</h3>
+                    </div>
+                </div>
+
+                <!-- Service 5: Advertisement -->
+                <div class="vb-card group" data-bg="assets/images/advertising.jpg">
+                    <div class="vb-content">
+                        <div class="w-12 h-12 rounded-lg bg-red-500/20 flex items-center justify-center text-[#E3000F] mb-6">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"></path></svg>
+                        </div>
+                        <h3 class="font-syne text-2xl font-bold mb-3">Advertisement</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-6">High-impact advertising campaigns designed to capture attention, dominate real estate, and drive tangible results.</p>
+                        <a href="#" class="inline-flex items-center gap-2 text-[#E3000F] text-sm font-bold uppercase tracking-wider hover:text-white transition-colors">
+                            Explore <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        </a>
+                    </div>
+                    <div class="vb-shutters"></div>
+                    <div class="vb-title-overlay">
+                        <h3 class="font-syne text-2xl font-bold text-white drop-shadow-md">Advertisement</h3>
+                    </div>
+                </div>
+
+                <!-- Service 6: Digital Marketing -->
+                <div class="vb-card group" data-bg="assets/images/digital.jpg">
+                    <div class="vb-content">
+                        <div class="w-12 h-12 rounded-lg bg-orange-500/20 flex items-center justify-center text-[#F57C00] mb-6">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        </div>
+                        <h3 class="font-syne text-2xl font-bold mb-3">Digital Marketing</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-6">Expand your digital presence with targeted SEO, dynamic social media strategies, and online marketing.</p>
+                        <a href="#" class="inline-flex items-center gap-2 text-[#F57C00] text-sm font-bold uppercase tracking-wider hover:text-white transition-colors">
+                            Explore <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        </a>
+                    </div>
+                    <div class="vb-shutters"></div>
+                    <div class="vb-title-overlay">
+                        <h3 class="font-syne text-2xl font-bold text-white drop-shadow-md">Digital Marketing</h3>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            
+            // 1. Shutter 3D Animation Logic
+            const cards = document.querySelectorAll('.vb-card');
+            const SLICE_COUNT = 6; // Number of vertical blinds/shutters per card
+
+            cards.forEach(card => {
+                const bgUrl = card.getAttribute('data-bg');
+                const shutterWrap = card.querySelector('.vb-shutters');
+                const titleOverlay = card.querySelector('.vb-title-overlay');
+                const contentElems = card.querySelectorAll('.vb-content > *');
+
+                // Dynamically build the CSS shutters based on the data-bg attribute
+                for (let i = 0; i < SLICE_COUNT; i++) {
+                    const slice = document.createElement('div');
+                    slice.classList.add('vb-slice');
+                    
+                    // Slightly increase width to ensure overlap and remove sub-pixel gaps
+                    // By adding 0.5px or a fractional percentage, the browser renders them seamlessly
+                    slice.style.width = `calc(${100 / SLICE_COUNT}% + 1px)`; 
+                    
+                    // Position each slice sequentially using proper percentages
+                    // We do not add the 1px overlap here so the alignment remains perfect
+                    slice.style.left = `${(100 / SLICE_COUNT) * i}%`; 
+                    // To prevent the overlapping slices from building up and extending past the container, 
+                    // we position them absolutely.
+                    slice.style.position = 'absolute';
+                    
+                    // Apply background image and stitch it together
+                    slice.style.backgroundImage = `url('${bgUrl}')`;
+                    slice.style.backgroundSize = `${SLICE_COUNT * 100}% 100%`;
+                    slice.style.backgroundPosition = `${i * (100 / (SLICE_COUNT - 1))}% center`;
+                    
+                    shutterWrap.appendChild(slice);
+                }
+
+                const slices = card.querySelectorAll('.vb-slice');
+
+                // Pre-set content elements to hidden state for animation
+                gsap.set(contentElems, { opacity: 0, y: 30 });
+
+                // Create the GSAP timeline
+                // Use a sharp, modern ease fitting the "Accenture" corporate/agency vibe
+                const tl = gsap.timeline({ 
+                    paused: true, 
+                    defaults: { ease: "power4.inOut" } 
+                });
+
+                tl.to(titleOverlay, { 
+                    opacity: 0, 
+                    y: -20, 
+                    duration: 0.4 
+                })
+                .to(slices, {
+                    rotationY: -90, // Flips the slice inward like a blind
+                    stagger: 0.05,  // Domino effect delay
+                    duration: 0.6,
+                    transformOrigin: "left center" // Hinge point
+                }, "<") // Start at the same time as the title fade
+                .to(contentElems, { 
+                    opacity: 1, 
+                    y: 0, 
+                    stagger: 0.08, 
+                    duration: 0.5,
+                    ease: "back.out(1.2)"
+                }, "-=0.3"); // Overlap the animations slightly
+
+                    // Play/Reverse timeline on mouse hover events
+                card.addEventListener('mouseenter', () => tl.play());
+                card.addEventListener('mouseleave', () => tl.reverse());
+            });
+
+        });
+    </script>
+</body>
+</html>

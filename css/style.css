@@ -1,0 +1,990 @@
+/* --- Floating Pill Navbar Styles --- */
+
+/* 
+  The navbar header itself is completely transparent.
+  We apply the styling only to the central navigation container.
+*/
+.floating-nav-pill {
+   /* Soft, colorful gradient using your exact logo colors */
+  background: linear-gradient(
+
+        120deg,
+
+        rgba(140, 198, 63, 0.35) 10%,   /* Green */
+
+        rgba(0, 174, 239, 0.35) 25%,   /* Cyan */
+
+        rgba(123, 31, 162, 0.35) 50%,  /* Purple */
+
+        rgba(227, 0, 15, 0.35) 75%,    /* Red */
+
+        rgba(251, 192, 45, 0.35) 100%  /* Yellow */
+
+    );
+    /* Soft, diffused shadow for the floating effect */
+    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.08), 0 4px 10px -3px rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(240, 240, 240, 0.8);
+    /* Creates the perfect pill shape */
+    border-radius: 9999px;
+    /* Padding to control the inner spacing */
+    padding: 1rem 3rem;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* 
+  When scrolling down, we can make the pill shrink slightly 
+  and the shadow more pronounced to indicate it's "floating" higher.
+*/
+.navbar-scrolled .floating-nav-pill {
+    padding: 0.3rem 2rem;
+    box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.12), 0 6px 12px -4px rgba(0, 0, 0, 0.06);
+    background-color: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(8px);
+}
+
+/* Transition the top padding of the whole header when scrolling */
+.navbar-scrolled.fixed {
+    padding-top: 0rem !important;
+}
+
+/* Navigation Link Hover Effects */
+.nav-link {
+    transition: color 0.3s ease;
+    /* Ensures the links align nicely within the pill */
+    display: flex;
+    align-items: center;
+}
+
+.nav-link:hover {
+    color: #1a1a1a;
+}
+
+/* The colorful animated underline (Optional, you can remove if you prefer it plain) */
+.nav-indicator {
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    border-radius: 4px;
+    transition: width 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.nav-link:hover .nav-indicator {
+    width: 100%;
+}
+
+.nav-link.active .nav-indicator {
+    width: 100%;
+}
+
+/* Ensure mobile menu button turns into an 'X' via JS class */
+.menu-open-icon path {
+    d: path('M6 18L18 6M6 6l12 12'); 
+}
+
+
+
+	 
+	 
+	 
+	 body {
+            font-family: 'Outfit', sans-serif;
+            /* Solid fallback color */
+    background-color: #f4f7fe;
+    
+    /* The Colorful Mesh Gradient using Visualbox Colors */
+    background-image: 
+        radial-gradient(circle at 0% 0%, rgba(0, 174, 239, 0.18), transparent 50%),   /* Cyan Top Left */
+        radial-gradient(circle at 100% 0%, rgba(140, 198, 63, 0.18), transparent 50%), /* Green Top Right */
+        radial-gradient(circle at 100% 100%, rgba(251, 192, 45, 0.18), transparent 50%), /* Yellow Bottom Right */
+        radial-gradient(circle at 0% 100%, rgba(227, 0, 15, 0.12), transparent 50%),   /* Red Bottom Left */
+        radial-gradient(circle at 50% 50%, rgba(123, 31, 162, 0.12), transparent 60%); /* Purple Center */
+        
+    /* This keeps the gradient perfectly locked in place while the user scrolls! */
+    background-attachment: fixed; 
+    background-repeat: no-repeat;
+    background-size: cover;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .font-syne {
+            font-family: 'Syne', sans-serif;
+        }
+
+        /* Marquee Animation */
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .animate-marquee {
+            animation: marquee 25s linear infinite;
+            display: flex;
+            width: max-content;
+        }
+
+        /* Hollow/Stroke Text Effect for the funky vibe */
+        .text-stroke {
+            color: transparent;
+            -webkit-text-stroke: 2px rgba(255, 255, 255, 0.8);
+        }
+
+        .text-stroke-color {
+            color: transparent;
+            -webkit-text-stroke: 2px #F57C00; /* Visualbox Orange */
+        }
+
+        /* Image hover effects */
+        .mockup-card {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            filter: grayscale(20%);
+        }
+        
+        .mockup-card:hover {
+            filter: grayscale(0%);
+            transform: scale(1.03) translateY(-10px);
+            z-index: 30;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+        }
+
+        /* Custom Logo Triangles */
+        .triangle-up {
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 14px solid;
+        }
+        .triangle-down {
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-top: 14px solid;
+        }
+
+
+
+
+
+		 .font-syne {
+            font-family: 'Syne', sans-serif;
+        }
+
+        /* Funky Text Stroke for Light Mode */
+        .text-stroke-funky {
+            color: transparent;
+            -webkit-text-stroke: 2px #2A3F84; /* Navy Blue */
+            text-shadow: 4px 4px 0px rgba(227, 0, 15, 0.1); /* Slight red shadow */
+            transition: all 0.3s ease;
+        }
+        
+        .text-stroke-funky:hover {
+            color: #2A3F84;
+            -webkit-text-stroke: 0px transparent;
+            text-shadow: 4px 4px 0px #FBC02D;
+        }
+
+        /* Organic Blob Animation */
+        .blob-shape {
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+            animation: morph 8s ease-in-out infinite;
+            overflow: hidden;
+            box-shadow: inset 0 0 0 10px rgba(255,255,255,0.5);
+        }
+
+        @keyframes morph {
+            0%, 100% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
+            34% { border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%; }
+            67% { border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%; }
+        }
+
+        /* Shooting Triangles Animation */
+        .triangle-particle {
+            position: absolute;
+            animation: float 6s infinite ease-in-out;
+            z-index: 0;
+            opacity: 0.8;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg) scale(1); }
+            50% { transform: translateY(-20px) rotate(15deg) scale(1.1); }
+            100% { transform: translateY(0) rotate(0deg) scale(1); }
+        }
+
+        /* Specific animations for the "shooting" effect behind image */
+        .shoot-1 { animation: shoot1 4s infinite alternate ease-in-out; }
+        .shoot-2 { animation: shoot2 5s infinite alternate-reverse ease-in-out; }
+        .shoot-3 { animation: shoot3 6s infinite alternate ease-in-out; }
+        
+        @keyframes shoot1 {
+            0% { transform: translate(0, 0) rotate(0deg); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translate(80px, -80px) rotate(120deg) scale(1.5); opacity: 0; }
+        }
+        @keyframes shoot2 {
+            0% { transform: translate(0, 0) rotate(45deg); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translate(100px, 40px) rotate(200deg) scale(0.8); opacity: 0; }
+        }
+        @keyframes shoot3 {
+            0% { transform: translate(0, 0) rotate(-45deg); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translate(40px, -100px) rotate(-180deg) scale(1.2); opacity: 0; }
+        }
+
+        /* Funky Button Hover */
+        .btn-funky {
+            background-size: 200% auto;
+            transition: 0.5s;
+            background-image: linear-gradient(to right, #2A3F84 0%, #7B1FA2 51%, #2A3F84 100%);
+        }
+        .btn-funky:hover {
+            background-position: right center;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px -5px rgba(123, 31, 162, 0.4);
+        }
+
+
+
+
+
+
+
+		.services-container {
+            background: linear-gradient(135deg, #f0f7ff, #f3f0ff, #fff5f0);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Abstract Triangle Decorations */
+        .triangle {
+            position: absolute;
+            width: 0;
+            height: 0;
+            opacity: 0.6;
+        }
+
+        .triangle-1 {
+            border-left: 50px solid transparent;
+            border-right: 50px solid transparent;
+            border-bottom: 100px solid #a855f7;
+            top: 10%;
+            left: 5%;
+            transform: rotate(-15deg);
+        }
+
+        .triangle-2 {
+            border-left: 40px solid transparent;
+            border-right: 40px solid transparent;
+            border-bottom: 80px solid #22d3ee;
+            bottom: 15%;
+            right: 8%;
+            transform: rotate(10deg);
+        }
+
+        .triangle-3 {
+            border-left: 30px solid transparent;
+            border-right: 30px solid transparent;
+            border-bottom: 60px solid #84cc16;
+            top: 25%;
+            right: 12%;
+            transform: rotate(30deg);
+        }
+
+        .services-section {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .services-section h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 3rem;
+            color: #1a1a1a;
+            line-height: 1.2;
+        }
+
+        .services-section h1 span {
+            background: linear-gradient(135deg, #00AEEF, #E3000F);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Styling for Service Cards */
+        .service-card {
+            background: #fff;
+            border-radius: 2rem;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: left;
+            border: 2px solid transparent;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            border-color: #FBC02D;
+        }
+
+        .service-card .card-image {
+            width: 100%;
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Placeholder images - replace with your actual images */
+        .image-design-dev { background-image: url('assets/images/design-development.png'); }
+        .image-packaging { background-image: url('assets/images/studio-blackthorn.jpg'); }
+        .image-marketing { background-image: url('assets/images/digital-marketing.png'); }
+        .image-illustration { background-image: url('assets/images/illustration.png'); }
+
+        .service-card h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+        }
+
+        .service-card p {
+            font-size: 1rem;
+            color: #4a4a4a;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 2rem;
+        }
+
+        .feature-list li {
+            font-size: 0.9rem;
+            color: #6a6a6a;
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .feature-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%) rotate(-15deg);
+            width: 0;
+            height: 0;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-bottom: 10px solid #FBC02D; /* Triangle bullet */
+        }
+
+        .read-more {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            color: #E3000F;
+            font-weight: 700;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        .read-more svg {
+            width: 20px;
+            height: 20px;
+            fill: #E3000F;
+            margin-left: 0.5rem;
+        }
+
+
+
+
+
+
+
+
+
+		.font-syne { font-family: 'Syne', sans-serif; }
+
+        /* Card Container & 3D Setup */
+        .vb-card {
+            position: relative;
+            height: 400px;
+            border-radius: 1rem;
+            background: linear-gradient(145deg, #151824 0%, #0a0c14 100%);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            perspective: 1200px; /* Crucial for 3D effect */
+            overflow: hidden; /* This clips any 1px overlap from the slices */
+            cursor: pointer;
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
+            transition: border-color 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .vb-card:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 40px -10px rgba(0, 174, 239, 0.15);
+        }
+
+        /* Inner Content (Revealed on hover) */
+        .vb-content {
+            position: absolute;
+            inset: 0;
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        /* The Shutter Wrapper sitting on top */
+        .vb-shutters {
+            position: absolute;
+            inset: 0;
+            z-index: 20;
+            /* Flex layout helps prevent sub-pixel gaps */
+            display: flex; 
+            pointer-events: none; /* Let mouse events pass to card */
+        }
+
+        /* Individual 3D Slice */
+        .vb-slice {
+            position: relative;
+            height: 100%;
+            background-repeat: no-repeat;
+            transform-style: preserve-3d;
+            backface-visibility: hidden;
+            /* Remove the border-right that was acting as a gap */
+            /* border-right: 1px solid rgba(255, 255, 255, 0.05); */
+            /* Subtle dark overlay so white text stands out initially */
+            box-shadow: inset 0 0 0 9999px rgba(0, 0, 0, 0.3); 
+        }
+
+        /* The Title sitting on top of the closed shutters */
+        .vb-title-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 30;
+            display: flex;
+            align-items: flex-end;
+            padding: 2rem;
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        /* Gradient Text utility */
+        .text-gradient {
+            background: linear-gradient(135deg, #00AEEF, #8CC63F, #FBC02D);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }  
+
+
+
+
+
+
+
+
+
+
+
+
+/* --- Services Section Styles --- */
+
+/* Hide scrollbar for the horizontal carousel but keep functionality */
+.hide-scrollbar::-webkit-scrollbar { 
+    display: none; 
+}
+.hide-scrollbar { 
+    -ms-overflow-style: none; 
+    scrollbar-width: none; 
+}
+
+/* Base state of the card */
+.service-card {
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+}
+
+/* Creates the glowing gradient border effect */
+.service-card::before {
+    content: "";
+    position: absolute;
+    inset: -3px;
+    border-radius: 26px;
+    /* Uses the variables defined inline in the HTML (Logo Colors) */
+    background: linear-gradient(180deg, var(--c1) 0%, var(--c2) 50%, transparent 100%);
+    z-index: -2;
+    opacity: 0.6;
+    transition: all 0.4s ease;
+}
+
+/* Hover Animation: Lift up and glow */
+.service-card:hover {
+    transform: translateY(-15px);
+}
+
+.service-card:hover::before {
+    opacity: 1;
+    filter: blur(8px);
+    inset: -4px;
+}
+
+
+
+/* --- Services Section Styles --- */
+
+/* Hide scrollbar for the horizontal carousel but keep functionality */
+.hide-scrollbar::-webkit-scrollbar { 
+    display: none; 
+}
+.hide-scrollbar { 
+    -ms-overflow-style: none; 
+    scrollbar-width: none; 
+}
+
+/* Base card smooth lift */
+.service-card {
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+}
+
+.service-card:hover {
+    transform: translateY(-8px);
+}
+
+
+
+
+
+/* --- Process Section 3D Styles --- */
+
+/* Preserve 3D context for the cards */
+.process-card {
+    transform-style: preserve-3d;
+    will-change: transform;
+}
+
+/* Child elements that will pop out during the 3D tilt */
+.process-number {
+    transform: translateZ(60px);
+    transition: transform 0.3s ease;
+}
+
+.process-icon {
+    transform: translateZ(40px);
+    transition: transform 0.3s ease;
+}
+
+.process-text {
+    transform: translateZ(20px);
+    transition: transform 0.3s ease;
+}
+
+/* Enhances the shadow when hovered for better 3D depth */
+.process-card:hover .process-number {
+    transform: translateZ(80px) scale(1.1);
+}
+
+.process-card:hover .process-icon {
+    transform: translateZ(60px);
+}
+
+/* Reusing the shooting animations if they aren't already in your CSS */
+.shoot-1 { animation: shoot1 4s infinite alternate ease-in-out; }
+.shoot-2 { animation: shoot2 5s infinite alternate-reverse ease-in-out; }
+.shoot-3 { animation: shoot3 6s infinite alternate ease-in-out; }
+
+@keyframes shoot1 {
+    0% { transform: translate(0, 0) rotate(0deg); opacity: 0; }
+    50% { opacity: 1; }
+    100% { transform: translate(80px, -80px) rotate(120deg) scale(1.5); opacity: 0; }
+}
+
+@keyframes shoot2 {
+    0% { transform: translate(0, 0) rotate(45deg); opacity: 0; }
+    50% { opacity: 1; }
+    100% { transform: translate(100px, 40px) rotate(200deg) scale(0.8); opacity: 0; }
+}
+
+@keyframes shoot3 {
+    0% { transform: translate(0, 0) rotate(-45deg); opacity: 0; }
+    50% { opacity: 1; }
+    100% { transform: translate(40px, -100px) rotate(-180deg) scale(1.2); opacity: 0; }
+}
+
+
+
+
+/* --- Happy Clients Slider Animations --- */
+
+/* Left Scrolling Animation */
+@keyframes scrollLeft {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); } /* Scrolls exactly half the width (one full set of cards) */
+}
+
+/* Right Scrolling Animation */
+@keyframes scrollRight {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+}
+
+.animate-scroll-left {
+    /* 25s controls the speed. Lower = faster */
+    animation: scrollLeft 35s linear infinite;
+    width: max-content;
+}
+
+.animate-scroll-right {
+    animation: scrollRight 35s linear infinite;
+    width: max-content;
+}
+
+/* Pause animations when the user hovers over a logo */
+.pause-animation {
+    animation-play-state: paused;
+}
+
+
+
+/* --- Industries Section Animations --- */
+
+/* Slow continuous rotation for background triangles and hover rings */
+.animate-spin-slow {
+    animation: spinSlow 8s linear infinite;
+}
+
+.animate-spin-slow-reverse {
+    animation: spinSlowReverse 8s linear infinite;
+}
+
+@keyframes spinSlow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes spinSlowReverse {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(-360deg); }
+}
+
+
+
+/* =========================================
+   CREATIVE TESTIMONIALS SECTION
+========================================= */
+
+/* =========================================
+   CREATIVE TESTIMONIALS SECTION (LIGHT THEME)
+========================================= */
+
+.vb-testimonials {
+    position: relative;
+    padding: 6rem 0;
+    /* Soft, light gradient using VB logo colors */
+    background: linear-gradient(
+        135deg, 
+        rgba(0, 174, 239, 0.08) 0%,   /* Cyan */
+        rgba(140, 198, 63, 0.08) 25%, /* Green */
+        rgba(251, 192, 45, 0.08) 50%, /* Yellow */
+        rgba(227, 0, 15, 0.05) 75%,   /* Red */
+        rgba(123, 31, 162, 0.08) 100% /* Purple */
+    );
+    overflow: hidden;
+    font-family: 'Outfit', sans-serif;
+}
+
+/* Background Blurry Orbs for Depth */
+.testi-bg-orbs {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.5; /* Slightly increased for light mode */
+}
+
+.testi-bg-orbs .orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+}
+
+.orb-orange {
+    top: -10%; left: -5%;
+    width: 40vw; height: 40vw;
+    background: linear-gradient(to bottom right, rgba(245, 124, 0, 0.3), rgba(227, 0, 15, 0.1));
+}
+
+.orb-navy {
+    bottom: -10%; right: -5%;
+    width: 50vw; height: 50vw;
+    background: linear-gradient(to top left, rgba(42, 63, 132, 0.3), rgba(123, 31, 162, 0.1));
+}
+
+/* Container & Header */
+.testi-container {
+    max-width: 90rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    position: relative;
+    z-index: 10;
+}
+
+.testi-header {
+    text-align: center;
+    margin-bottom: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.testi-subtitle {
+    color: #E3000F; /* Changed to red for better contrast on light bg */
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+}
+
+.testi-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: #1a1a1a; /* Changed to dark text */
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+@media (min-width: 768px) {
+    .testi-title { font-size: 3.5rem; }
+}
+
+.testi-desc {
+    color: #4b5563; /* Darker gray for light background */
+    font-size: 1.125rem;
+    max-width: 42rem;
+    line-height: 1.6;
+}
+
+/* Carousel Layout */
+.testi-carousel-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.testi-track-container {
+    width: 100%;
+    /* We handle the hidden scrollbar on the track itself now */
+}
+
+.testi-track {
+    display: flex;
+    gap: 2rem;
+    padding: 2rem 0; /* Padding allows the 3D hover shadow to not get cut off */
+    
+    /* Native Browser Scrolling & Snapping */
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    
+    /* Hide the ugly scrollbar */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.testi-track::-webkit-scrollbar {
+    display: none;
+}
+
+.testi-card {
+    /* Snaps cleanly into place when scrolling */
+    scroll-snap-align: start; 
+    
+    flex: 0 0 100%; 
+    min-width: 100%;
+}
+
+@media (min-width: 768px) {
+    .testi-card { flex: 0 0 calc(50% - 1rem); min-width: calc(50% - 1rem); }
+}
+
+@media (min-width: 1024px) {
+    .testi-card { flex: 0 0 calc(33.333% - 1.33rem); min-width: calc(33.333% - 1.33rem); }
+}
+/* Glassmorphism Inner Card (White frosted glass) */
+.testi-card-inner {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 1.5rem;
+    padding: 2.5rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.testi-card-inner:hover {
+    transform: translateY(-5px);
+    border-color: #00AEEF; /* Cyan border on hover */
+    box-shadow: 0 15px 35px rgba(0, 174, 239, 0.15);
+}
+
+/* Card Content Styling */
+.testi-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+}
+
+.quote-icon {
+    width: 3rem;
+    height: 3rem;
+    color: rgba(0, 0, 0, 0.05); /* Faint dark icon */
+}
+
+.testi-rating {
+    display: flex;
+    gap: 0.25rem;
+}
+
+.testi-rating svg {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+.testi-body {
+    color: #4b5563; /* Darker gray text */
+    font-size: 1.125rem;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    font-style: italic;
+    flex-grow: 1; /* Pushes client info to the bottom */
+}
+
+/* Client Info */
+.testi-client {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.1); /* Darker border line */
+    padding-top: 1.5rem;
+}
+
+.client-avatar {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.25rem;
+}
+
+.bg-navy { background-color: #2A3F84; }
+.bg-orange { background-color: #F57C00; }
+.bg-green { background-color: #8CC63F; }
+
+.client-name {
+    font-family: 'Syne', sans-serif;
+    color: #1a1a1a; /* Dark text */
+    font-weight: 700;
+    font-size: 1.125rem;
+    margin: 0 0 0.25rem 0;
+}
+
+.client-role {
+    color: #6b7280; /* Medium gray */
+    font-size: 0.875rem;
+    margin: 0;
+}
+
+/* Carousel Controls */
+.testi-btn {
+    display: none; /* Hidden on mobile by default */
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    color: #1a1a1a;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.testi-btn svg { width: 1.5rem; height: 1.5rem; stroke: currentColor; fill: none; margin: auto; }
+
+.testi-btn:hover:not(:disabled) {
+    background: #00AEEF;
+    border-color: #00AEEF;
+    color: #ffffff;
+}
+
+.testi-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    background: #f3f4f6;
+}
+
+@media (min-width: 1024px) {
+    .testi-btn { display: flex; } /* Show on larger screens */
+}
+
+/* Dots Indicator */
+.testi-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 2rem;
+}
+
+.testi-dot {
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.15); /* Darker dots for light background */
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.testi-dot.active {
+    background: #FBC02D;
+    width: 2rem;
+    border-radius: 1rem;
+}
