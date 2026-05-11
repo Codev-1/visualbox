@@ -407,72 +407,68 @@ if (document.readyState === 'loading') {
 // ==========================================
 // BULLETPROOF NAVBAR & MOBILE MENU LOGIC
 // ==========================================
+// ==========================================
+// BULLETPROOF NAVBAR & MOBILE MENU LOGIC
+// ==========================================
+// ==========================================
+// BULLETPROOF NAVBAR & MOBILE MENU LOGIC
+// ==========================================
 document.addEventListener('click', function(e) {
     
-    // 1. Handle Hamburger Button OR Dark Backdrop Click
-    const mobileMenuBtn = e.target.closest('#mobile-menu-btn');
+    // Elements
+    const openBtn = e.target.closest('#mobile-menu-open-btn');
+    const closeBtn = e.target.closest('#mobile-menu-close-btn');
     const backdropClick = e.target.closest('#mobile-menu-backdrop');
+    const servicesBtn = e.target.closest('#mobile-services-btn');
     
-    if (mobileMenuBtn || backdropClick) {
-        const mobileMenu = document.getElementById('mobile-menu');
-        const backdrop = document.getElementById('mobile-menu-backdrop');
-        const btn = document.getElementById('mobile-menu-btn'); 
-        const floatingBtns = document.getElementById('global-floating-buttons');
-        
+    const mobileMenu = document.getElementById('mobile-menu');
+    const backdrop = document.getElementById('mobile-menu-backdrop');
+    const floatingBtns = document.getElementById('global-floating-buttons');
+
+    // 1. OPEN MOBILE MENU
+    if (openBtn) {
         if (mobileMenu) {
-            // Check if menu is currently open
-            const isOpen = mobileMenu.classList.contains('translate-x-0');
-            
-            if (isOpen) {
-                // -> CLOSE THE MENU
-                mobileMenu.classList.remove('translate-x-0');
-                mobileMenu.classList.add('-translate-x-full'); // Hide to the left
-                
-                // Fade out dark background
-                if(backdrop) {
-                    backdrop.classList.remove('opacity-100');
-                    backdrop.classList.add('opacity-0');
-                    setTimeout(() => backdrop.classList.add('hidden'), 300);
-                }
-
-                // Change Icon back to Hamburger
-                if(btn) btn.innerHTML = '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16"></path></svg>';
-                
-                // Show floating buttons again
-                if (floatingBtns) floatingBtns.style.display = 'flex';
-                
-            } else {
-                // -> OPEN THE MENU
-                mobileMenu.classList.remove('-translate-x-full', 'translate-x-full'); // Remove all hidden states
-                mobileMenu.classList.add('translate-x-0'); // Slide in
-                
-                // Fade in dark background
-                if(backdrop) {
-                    backdrop.classList.remove('hidden');
-                    setTimeout(() => backdrop.classList.remove('opacity-0'), 10);
-                    setTimeout(() => backdrop.classList.add('opacity-100'), 20);
-                }
-
-                // Change Icon to 'X'
-                if(btn) btn.innerHTML = '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg>';
-                
-                // Hide floating buttons so they don't overlap the menu
-                if (floatingBtns) floatingBtns.style.display = 'none';
-            }
+            mobileMenu.classList.remove('-translate-x-full');
+            mobileMenu.classList.add('translate-x-0');
         }
-        return; 
+        if (backdrop) {
+            backdrop.classList.remove('hidden');
+            setTimeout(() => backdrop.classList.add('opacity-100'), 10);
+        }
+        if (floatingBtns) floatingBtns.style.display = 'none';
+        return;
     }
 
-    // 2. Handle Mobile "Services" Accordion Dropdown Click
-    const mobileServicesBtn = e.target.closest('#mobile-services-btn');
-    if (mobileServicesBtn) {
-        const mobileServicesMenu = document.getElementById('mobile-services-menu');
-        const mobileServicesIcon = document.getElementById('mobile-services-icon');
-        
-        if (mobileServicesMenu && mobileServicesIcon) {
-            mobileServicesMenu.classList.toggle('hidden');
-            mobileServicesMenu.classList.toggle('flex');
-            mobileServicesIcon.classList.toggle('rotate-180');
+    // 2. CLOSE MOBILE MENU
+    if (closeBtn || backdropClick) {
+        if (mobileMenu) {
+            mobileMenu.classList.remove('translate-x-0');
+            mobileMenu.classList.add('-translate-x-full');
         }
+        if (backdrop) {
+            backdrop.classList.remove('opacity-100');
+            setTimeout(() => backdrop.classList.add('hidden'), 300);
+        }
+        if (floatingBtns) floatingBtns.style.display = 'flex';
+        return;
+    }
+
+    // 3. TOGGLE SERVICES ACCORDION
+    if (servicesBtn) {
+        e.preventDefault(); 
+        const menuList = document.getElementById('mobile-services-menu');
+        const menuIcon = document.getElementById('mobile-services-icon');
+        
+        if (menuList) {
+            // Force pure CSS inline styling to bypass Tailwind clash
+            if (menuList.style.display === 'none' || menuList.style.display === '') {
+                menuList.style.display = 'flex'; // OPEN
+                if (menuIcon) menuIcon.classList.add('rotate-180');
+            } else {
+                menuList.style.display = 'none'; // CLOSE
+                if (menuIcon) menuIcon.classList.remove('rotate-180');
+            }
+        }
+        return;
     }
 });

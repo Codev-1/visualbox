@@ -1,143 +1,97 @@
-<!-- Floating Pill Style Navbar -->
-<!-- Notice we removed the full-width background colors and borders here -->
-<header id="main-navbar" class="fixed top-0 left-0 w-full z-[100] transition-all duration-300 pt-4 md:pt-6 px-4 md:px-8 pointer-events-none">
+<header id="main-navbar" class="fixed top-0 left-0 w-full z-[99990] transition-all duration-300 pt-4 md:pt-6 px-4 md:px-8 pointer-events-none">
     
-    <div class="max-w-[90rem] mx-auto w-full">
-        <!-- Flex container to space out Logo, Center Nav, and CTA -->
-        <div class="flex items-center justify-between w-full relative" id="navbar-container">
+    <div class="max-w-[90rem] mx-auto w-full relative pointer-events-auto">
+        <div class="flex items-center justify-between w-full" id="navbar-container">
             
-            <!-- Left: Logo (pointer-events-auto re-enables clicking) -->
-            <div class="w-1/4 flex items-center z-20 pointer-events-auto">
+            <div class="w-1/4 flex items-center">
                 <a href="index.html" class="block cursor-pointer">
-                    <!-- Adjusted size to fit the new layout better -->
-                    <img src="assets/images/Visualbox Logo.png" alt="Visualbox Advertising" class="h-16 md:h-24 w-auto drop-shadow-sm transition-transform hover:scale-105">
+                    <img src="assets/images/Visualbox Logo.png" alt="Visualbox Advertising" class="h-16 md:h-28 w-auto drop-shadow-sm transition-transform hover:scale-105">
                 </a>
             </div>
 
-            <!-- Center: The "Floating Pill" Navigation -->
-            <nav class="hidden lg:flex items-center justify-center gap-10 z-20 pointer-events-auto floating-nav-pill">
+            <nav class="hidden lg:flex gap-10 z-12 pointer-events-auto floating-nav-pill">
+                
                 <a href="index.html" class="nav-link text-[#2A3F84] font-outfit font-bold uppercase tracking-wider text-[13px] relative group">
-                    Home
-                    <span class="nav-indicator bg-[#00AEEF]"></span>
+                    Home<span class="nav-indicator bg-[#00AEEF]"></span>
                 </a>
-               <!-- Services (Dropdown) -->
-    <div class="relative group">
-        <!-- Main Tab -->
-        <a href="services.html" class="nav-link text-[#2A3F84] font-outfit font-bold uppercase tracking-wider text-[13px] relative flex items-center gap-1 py-4">
-            Services
-            <!-- Chevron Arrow -->
-            <svg class="w-3.5 h-3.5 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
-            <span class="nav-indicator bg-[#8CC63F]"></span>
-        </a>
-        
-        <!-- Dropdown Menu Box -->
-        <div class="absolute top-[80%] left-1/2 -translate-x-1/2 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-4 group-hover:translate-y-0 w-[240px] z-50">
-            <!-- Glassmorphism Card -->
-            <div class="bg-white/80 backdrop-blur-xl border border-white/80 shadow-[0_15px_35px_rgba(0,0,0,0.1)] rounded-2xl overflow-hidden flex flex-col py-2">
-                
-                <a href="printing.html" class="px-6 py-3 text-[#1a1a1a] font-outfit font-bold uppercase tracking-wider text-[12px] hover:bg-white hover:text-[#00AEEF] transition-colors border-b border-gray-100/50">
-                    Printing
-                </a>
-                
-                <a href="packaging.html" class="px-6 py-3 text-[#1a1a1a] font-outfit font-bold uppercase tracking-wider text-[12px] hover:bg-white hover:text-[#FBC02D] transition-colors border-b border-gray-100/50">
-                    Packaging
-                </a>
-                
-                <a href="branding.html" class="px-6 py-3 text-[#1a1a1a] font-outfit font-bold uppercase tracking-wider text-[12px] hover:bg-white hover:text-[#7B1FA2] transition-colors border-b border-gray-100/50">
-                    Branding
-                </a>
-                
-                <a href="design.html" class="px-6 py-3 text-[#1a1a1a] font-outfit font-bold uppercase tracking-wider text-[12px] hover:bg-white hover:text-[#8CC63F] transition-colors border-b border-gray-100/50">
-                    Design
-                </a>
-                
-                <a href="advertisement.html" class="px-6 py-3 text-[#1a1a1a] font-outfit font-bold uppercase tracking-wider text-[12px] hover:bg-white hover:text-[#E3000F] transition-colors border-b border-gray-100/50">
-                    Advertisement
-                </a>
-                
-                <a href="digital-marketing.html" class="px-6 py-3 text-[#1a1a1a] font-outfit font-bold uppercase tracking-wider text-[12px] hover:bg-white hover:text-[#F57C00] transition-colors">
-                    Digital Marketing
-                </a>
-                
-            </div>
-        </div>
-    </div>
-                <a href="portfolio.html" class="nav-link text-[#2A3F84] font-outfit font-bold uppercase tracking-wider text-[13px] relative group">
-                    Portfolio
-                    <span class="nav-indicator bg-[#FBC02D]"></span>
-                </a>
-                <a href="about.html" class="nav-link text-[#2A3F84] font-outfit font-bold uppercase tracking-wider text-[13px] relative group">
-                    About Us
-                    <span class="nav-indicator bg-[#7B1FA2]"></span>
-                </a>
-                <a href="contact.html" class="nav-link text-[#2A3F84] font-outfit font-bold uppercase tracking-wider text-[13px] relative group">
-                    Contact
-                    <span class="nav-indicator bg-[#E3000F]"></span>
-                </a>
+
+                <div class="relative group flex items-center">
+                    <a href="services.html" class="nav-link text-[#2A3F84] font-outfit font-bold uppercase tracking-wider text-[13px] relative flex items-center gap-2">
+                        Services
+                        <i class="fa-solid fa-chevron-down text-[10px] transition-transform duration-300 group-hover:rotate-180"></i>
+                        <span class="nav-indicator bg-[#8CC63F]"></span>
+                    </a>
+                    
+                    <div class="absolute top-[120%] left-1/2 -translate-x-1/2 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-4 group-hover:translate-y-0 w-[240px]">
+                        <div class="bg-white/90 backdrop-blur-xl border border-white/80 shadow-[0_15px_35px_rgba(0,0,0,0.1)] rounded-2xl overflow-hidden flex flex-col py-2">
+                            <a href="printing.html" class="px-6 py-3 text-[#1a1a1a] font-outfit font-bold uppercase tracking-wider text-[12px] hover:bg-white hover:text-[#00AEEF] border-b border-gray-100/50">Printing</a>
+                            <a href="packaging.html" class="px-6 py-3 text-[#1a1a1a] font-outfit font-bold uppercase tracking-wider text-[12px] hover:bg-white hover:text-[#FBC02D] border-b border-gray-100/50">Packaging</a>
+                            <a href="branding.html" class="px-6 py-3 text-[#1a1a1a] font-outfit font-bold uppercase tracking-wider text-[12px] hover:bg-white hover:text-[#7B1FA2] border-b border-gray-100/50">Branding</a>
+                            <a href="design.html" class="px-6 py-3 text-[#1a1a1a] font-outfit font-bold uppercase tracking-wider text-[12px] hover:bg-white hover:text-[#8CC63F] border-b border-gray-100/50">Design</a>
+                            <a href="advertisement.html" class="px-6 py-3 text-[#1a1a1a] font-outfit font-bold uppercase tracking-wider text-[12px] hover:bg-white hover:text-[#E3000F] border-b border-gray-100/50">Advertisement</a>
+                            <a href="digital-marketing.html" class="px-6 py-3 text-[#1a1a1a] font-outfit font-bold uppercase tracking-wider text-[12px] hover:bg-white hover:text-[#F57C00]">Digital Marketing</a>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="portfolio.html" class="nav-link text-[#2A3F84] font-outfit font-bold uppercase tracking-wider text-[13px] relative group">Portfolio<span class="nav-indicator bg-[#FBC02D]"></span></a>
+                <a href="about.html" class="nav-link text-[#2A3F84] font-outfit font-bold uppercase tracking-wider text-[13px] relative group">About Us<span class="nav-indicator bg-[#7B1FA2]"></span></a>
+                <a href="contact.html" class="nav-link text-[#2A3F84] font-outfit font-bold uppercase tracking-wider text-[13px] relative group">Contact<span class="nav-indicator bg-[#E3000F]"></span></a>
             </nav>
 
-            <!-- Right: CTA Button & Mobile Toggle -->
-            <div class="w-1/4 flex items-center justify-end z-20 gap-4 pointer-events-auto">
-                
-                <!-- Matching the vibrant lime green CTA from your reference -->
-                <a href="https://wa.me/917875838908?text=Hi%20Visualbox%20team!%20I%20was%20looking%20at%20your%20website%20and%20I%20would%20like%20to%20get%20a%20quote%20for%20a%20project." target="_blank" class="hidden md:inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full font-outfit font-bold text-[#1a1a1a] text-sm transition-all duration-300 shadow-md hover:shadow-xl hover:-translate-y-1 bg-[#bbf758] hover:bg-[#a3e635]">
-                    Get Quote
-                    <i class="fa-brands fa-whatsapp text-lg"></i>
+            <div class="w-1/4 flex items-center justify-end gap-4">
+                <a href="https://wa.me/917875838908" target="_blank" class="hidden md:inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full font-outfit font-bold text-[#1a1a1a] text-sm shadow-md hover:shadow-xl bg-[#bbf758] hover:bg-[#a3e635] transition-all">
+                    Get Quote <i class="fa-brands fa-whatsapp text-lg"></i>
                 </a>
 
-                <!-- Mobile Menu Button -->
-                <button id="mobile-menu-btn" class="lg:hidden text-[#2A3F84] focus:outline-none p-2.5 rounded-full bg-white shadow-md border border-gray-100">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
+                <button id="mobile-menu-open-btn" class="lg:hidden text-[#2A3F84] p-2.5 w-11 h-11 flex items-center justify-center rounded-full bg-white shadow-md border border-gray-100 transition-transform active:scale-95 text-xl">
+                    <i class="fa-solid fa-bars pointer-events-none"></i>
                 </button>
             </div>
-
-        </div>
-    </div>
-
-    <!-- Mobile Menu Overlay -->
-    <div id="mobile-menu-backdrop" class="fixed inset-0 bg-[#111322]/60 backdrop-blur-sm z-[80] hidden opacity-0 transition-opacity duration-300 lg:hidden cursor-pointer"></div>
-
-    <div id="mobile-menu" class="fixed top-0 left-0 h-full w-[75%] sm:w-[50%] bg-white z-[90] transform -translate-x-full transition-transform duration-500 ease-in-out lg:hidden flex flex-col pt-28 px-8 overflow-y-auto shadow-[15px_0_40px_rgba(0,0,0,0.15)]">
-        
-        <nav class="flex flex-col gap-6 font-syne text-xl font-black uppercase tracking-wider text-[#2A3F84] text-left">
-            <a href="index.html" class="hover:text-[#00AEEF] transition-colors border-b border-gray-100 pb-4 block">Home</a>
-            
-			<a href="portfolio.html" class="hover:text-[#FBC02D] transition-colors border-b border-gray-100 pb-4 block">Portfolio</a>
-            <a href="about.html" class="hover:text-[#7B1FA2] transition-colors border-b border-gray-100 pb-4 block">About Us</a>
-            <a href="contact.html" class="hover:text-[#E3000F] transition-colors border-b border-gray-100 pb-4 block">Contact</a>
-
-
-            <div class="border-b border-gray-100 pb-4 flex flex-col">
-                <button id="mobile-services-btn" class="flex items-center justify-between w-full text-left hover:text-[#8CC63F] transition-colors focus:outline-none">
-                    <span>Services</span>
-                    <svg id="mobile-services-icon" class="w-6 h-6 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
-                </button>
-                
-                <div id="mobile-services-menu" class="hidden flex-col gap-5 mt-5 pl-4 font-outfit text-base font-bold capitalize tracking-normal text-gray-500 text-left">
-                    <a href="printing.html" class="hover:text-[#00AEEF] transition-colors block">Printing</a>
-                    <a href="packaging.html" class="hover:text-[#FBC02D] transition-colors block">Packaging</a>
-                    <a href="branding.html" class="hover:text-[#7B1FA2] transition-colors block">Branding</a>
-                    <a href="design.html" class="hover:text-[#8CC63F] transition-colors block">Design</a>
-                    <a href="advertisement.html" class="hover:text-[#E3000F] transition-colors block">Advertisement</a>
-                    <a href="digital.html" class="hover:text-[#F57C00] transition-colors block">Digital Marketing</a>
-                </div>
-            </div>
-
-            <a href="portfolio.html" class="hover:text-[#FBC02D] transition-colors border-b border-gray-100 pb-4 block">Portfolio</a>
-            <a href="about.html" class="hover:text-[#7B1FA2] transition-colors border-b border-gray-100 pb-4 block">About Us</a>
-            <a href="contact.html" class="hover:text-[#E3000F] transition-colors border-b border-gray-100 pb-4 block">Contact</a>
-        </nav>
-        
-        <div class="mt-8 mb-8">
-            <a href="https://wa.me/917875838908?text=Hi%20Visualbox%20team!%20I%20was%20looking%20at%20your%20website%20and%20I%20would%20like%20to%20get%20a%20quote%20for%20a%20project." target="_blank" class="w-full text-center inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl font-syne font-bold text-[#1a1a1a] uppercase tracking-wider text-sm shadow-lg bg-[#bbf758]">
-                <i class="fa-brands fa-whatsapp text-2xl"></i> Get a Quote
-            </a>
         </div>
     </div>
 </header>
 
-	
+<div id="mobile-menu-backdrop" class="fixed inset-0 bg-[#111322]/80 backdrop-blur-sm z-[99998] hidden opacity-0 transition-opacity duration-300 lg:hidden cursor-pointer pointer-events-auto"></div>
 
+<div id="mobile-menu" class="fixed top-0 left-0 h-[100dvh] w-[75%] sm:w-[50%] bg-gradient-to-br from-[#5C2D91] via-[#850085] to-[#0078D7] z-[99999] transform -translate-x-full transition-transform duration-500 ease-in-out lg:hidden flex flex-col pt-8 px-6 overflow-y-auto shadow-[15px_0_40px_rgba(0,0,0,0.5)] pointer-events-auto">
+    
+    <div class="flex items-center justify-between border-b border-white/20 pb-6 mb-4">
+        <div class="bg-white/80 p-2 rounded-xl backdrop-blur-md">
+            <img src="assets/images/Visualbox Logo.png" alt="Visualbox Logo" class="h-10 w-auto">
+        </div>
+        
+        <button id="mobile-menu-close-btn" class="w-10 h-10 bg-white/10 border border-white/20 rounded-full flex items-center justify-center text-white text-xl hover:bg-white hover:text-[#5C2D91] transition-colors shadow-lg">
+            <i class="fa-solid fa-xmark pointer-events-none"></i>
+        </button>
+    </div>
 
+    <a href="index.html" class="block font-syne text-xl font-black uppercase tracking-wider text-white border-b border-white/20 py-4 hover:text-[#00AEEF]">Home</a>
+    
+    <div class="block border-b border-white/20 py-4">
+        <button id="mobile-services-btn" class="flex items-center justify-between w-full font-syne text-xl font-black uppercase tracking-wider text-white focus:outline-none hover:text-[#bbf758]">
+            <span class="pointer-events-none">Services</span>
+            <i id="mobile-services-icon" class="fa-solid fa-chevron-down text-lg transition-transform duration-300 pointer-events-none"></i>
+        </button>
+        
+        <div id="mobile-services-menu" style="display: none;" class="flex-col gap-4 mt-5 pl-4 font-outfit text-base font-bold text-gray-200">
+            <a href="printing.html" class="block py-1 hover:text-[#00AEEF]">Printing</a>
+            <a href="packaging.html" class="block py-1 hover:text-[#FBC02D]">Packaging</a>
+            <a href="branding.html" class="block py-1 hover:text-[#e879f9]">Branding</a>
+            <a href="design.html" class="block py-1 hover:text-[#8CC63F]">Design</a>
+            <a href="advertisement.html" class="block py-1 hover:text-[#FF5252]">Advertisement</a>
+            <a href="digital-marketing.html" class="block py-1 hover:text-[#F57C00]">Digital Marketing</a>
+        </div>
+    </div>
+
+    <a href="portfolio.html" class="block font-syne text-xl font-black uppercase tracking-wider text-white border-b border-white/20 py-4 hover:text-[#FBC02D]">Portfolio</a>
+    <a href="about.html" class="block font-syne text-xl font-black uppercase tracking-wider text-white border-b border-white/20 py-4 hover:text-[#e879f9]">About Us</a>
+    <a href="contact.html" class="block font-syne text-xl font-black uppercase tracking-wider text-white border-b border-white/20 py-4 hover:text-[#FF5252]">Contact</a>
+    
+    <div class="mt-auto pt-8 pb-10">
+        <a href="https://wa.me/917875838908" target="_blank" class="flex items-center justify-center gap-2 w-full py-4 rounded-xl font-syne font-bold text-[#1a1a1a] uppercase tracking-wider text-sm shadow-[0_10px_25px_rgba(187,247,88,0.4)] bg-[#bbf758] hover:scale-105 transition-transform duration-300">
+            <i class="fa-brands fa-whatsapp text-xl"></i> Get a Quote
+        </a>
+    </div>
+
+</div>
